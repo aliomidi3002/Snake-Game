@@ -242,11 +242,15 @@ function score_point(score) {
     c.fillText(score.toString(), paddingX + 150, canvas.height - paddingY);
 }
 
-// Main Game class containing the field, snake, and apple
+// Main Game class containing the field, snake, and multiple apples
 function Game() {
     this.field = new Field(canvas.width, canvas.height);
     this.snake = new Snake();
-    this.apple = new Apple();
+    this.apples = [];
+    // Create five apples at random positions
+    for (let i = 0; i < 5; i++) {
+        this.apples.push(new Apple());
+    }
 }
 
 let game = new Game();
@@ -261,20 +265,26 @@ setInterval(() => {
 function animate() {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (!isGameOver) {
-        game.apple.draw();
-        game.snake.draw();
+    if (game) {
         game.field.draw();
+
+        game.snake.draw();
+        game.apples.forEach(apple => apple.draw());
 
         score_point(game.snake.length - 3);
 
-        // Check if snake ate the apple
-        if (game.snake.x === game.apple.x && game.snake.y === game.apple.y) {
-            sound(eatSound);
-            game.snake.length++;
-            game.apple = new Apple();
-        }
-    } else {
+        // Check if snake ate any apple
+        game.apples.forEach((apple, index) => {
+            if (game.snake.x === apple.x && game.snake.y === apple.y) {
+                sound(eatSound);
+                game.snake.length++;
+                game.apples.splice(index, 1);
+                game.apples.push(new Apple());
+            }
+        });
+    }
+
+    if (isGameOver) {
         // Play game over sound once
         if (!gameOverSoundPlayed) {
             sound(gameOverSound);
