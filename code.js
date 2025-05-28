@@ -4,8 +4,8 @@ const c = canvas.getContext('2d');
 
 const cellSize = 25;
 
-const eatSound = 'eat.wav';
-const gameOverSound = 'GameOver.mp3';
+const eatSound = 'sound/eat.wav';
+const gameOverSound = 'sound/GameOver.mp3';
 
 // Play sound from given path, catch playback errors (e.g. user gesture needed)
 function sound(path) {
