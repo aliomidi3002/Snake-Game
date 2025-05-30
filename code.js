@@ -2,7 +2,7 @@ const container = document.getElementById('game-container');
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
-const cellSize = 25;
+const cellSize = 30;
 
 const eatSound = 'sound/eat.wav';
 const gameOverSound = 'sound/GameOver.mp3';

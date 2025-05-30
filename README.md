@@ -36,10 +36,6 @@ Simply open the `index.html` file in your preferred web browser.
 
 5. Your default browser will open the game with a local development server, enabling live reload and better performance.
 
-## License
-
-This project is open source and available under the MIT License.
-
 ---
 
 Enjoy playing! Feel free to contribute or report issues.
